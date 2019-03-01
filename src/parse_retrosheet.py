@@ -3,5 +3,29 @@ repo = '/Users/jeremymiller/GoogleDrive/Data_Science/Projects/Baseball/'
 with open(repo + "data/retrosheet_data/2018/2018SFN.EVN") as f:
     games = f.readlines()
 
-# turn into dictionary format
+
+
 # find way of keeping plays in sequence within an inning
+
+'''
+Mongo Sketch:
+info
+{"game_id": SFN201804100, "entry_type": "info", "visteam":"ARI}
+
+start
+{"game_id": SFN201804100, "entry_type": "start", player_id: "dysoj001", "name": "Jarrod Dyson", "team": 0, "batting_order": 1, "position" : 7}
+
+play
+{"game_id": SFN201804100, "entry_type": "play", "inning": 1, "bottom": 0, "player_id": "dysoj001", "count": 21, "pitches", CBBX, "event": "CBF2FBB>X,D7/L.2-H;1-H"
+
+com
+{"game_id": SFN201804100, "entry_type": "com", "comment": "team blah blah" 
+
+sub
+{"game_id": SFN201804100, "entry_type": "sub", player_id: "dysoj001", "name": "Jarrod Dyson", "team": 0, "batting_order": 1, "position" : 7}
+
+
+data
+{"game_id": SFN201804100, "entry_type": "data", "data_type": "er", "player_id": "kersc001", "earned_runs": 1}
+
+'''
