@@ -25,12 +25,11 @@ mongoimport --jsonArray --db testdb --collection testcoll < test.json
 import numpy as np
 import sys
 import json
-
-repo = '/Users/jeremymiller/GoogleDrive/Data_Science/Projects/Baseball/'
+import subprocess
 
 def read_file(path):
     # read in a file
-    with open(repo + path) as f:
+    with open(path) as f:
         return f.readlines()
 
 def trim_lines(file):
@@ -93,17 +92,30 @@ def build_dicts(file):
 
     return out
 
+def main(dir):
+    '''
+    Input: directory with retrosheet files
+    Output: folder with json files
+    '''
+    files = subprocess.check_output(["ls", dir], universal_newlines=True)
+    split_files = files.split("\n")
+    for file in split_files:
+        if len(file) != 0:
+            if file[-3] == "E":
+                data = read_file(dir+file)
+                trimmed_data = trim_lines(data)
+                id_data = insert_game_number(trimmed_data)
+                split_data = split_lines(id_data)
+                dicts = build_dicts(split_data)
+                with open(dir+file[:-3]+"json", 'w') as fout:
+                    json.dump(dicts, fout)
 
 ##################################################################
 if __name__ == "__main__":
 
-    p = "data/retrosheet_data/2018/2018SFN.EVN"
-    path = sys.argv[1]
-    data = read_file(path)
-    trimmed_data = trim_lines(data)
-    id_data = insert_game_number(trimmed_data)
-    split_data = split_lines(id_data)
-    dicts = build_dicts(split_data)
-    with open(sys.argv[2], 'w') as fout:
-        json.dump(dicts, fout)
+    '''
+    ipython -i parse_retroshe4.py directory
+    '''
+    main(sys.argv[1])
+
 
