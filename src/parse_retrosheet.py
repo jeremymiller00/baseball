@@ -3,6 +3,28 @@ repo = '/Users/jeremymiller/GoogleDrive/Data_Science/Projects/Baseball/'
 with open(repo + "data/retrosheet_data/2018/2018SFN.EVN") as f:
     games = f.readlines()
 
+# get rid of \n
+games1 = []
+for line in games:
+    games1.append(line[:-2])
+
+# put game number in front of each line
+games2 = []
+id_field = ""
+for line in games1:
+    if line[0:2] == "id":
+        id_field = line
+        games2.append(id_field)
+    else:
+        games2.append(",".join([id_field, line]))
+
+# break each game up by game id
+games2 = []
+for line in games1:
+    games2.append(line.split(","))
+
+games2
+
 
 
 # find way of keeping plays in sequence within an inning
