@@ -1,3 +1,5 @@
+import numpy as np 
+
 repo = '/Users/jeremymiller/GoogleDrive/Data_Science/Projects/Baseball/'
 
 with open(repo + "data/retrosheet_data/2018/2018SFN.EVN") as f:
@@ -19,13 +21,37 @@ for line in games1:
         games2.append(",".join([id_field, line]))
 
 # break each game up by game id
-games2 = []
-for line in games1:
-    games2.append(line.split(","))
+games3 = []
+for line in games2:
+    games3.append(line.split(","))
 
-games2
+games3[0]
 
+outlist = []
+for row in games3:
+    if len(row) < 3:
+        continue # eliminate original id rows
+    if row[2] == "info":
+        if len(row) > 4: # make sure it's not an empty "save" row
+        # outlist.append(row)
+            d = {"game_id": row[1], "entry_type": row[2], row[3]: row[4]}
+            outlist.append(d)
+    elif row[2] == "start":
+        continue
+    elif row[2] == "play":
+        continue
+    
+    elif row[2] == "com":
+        continue
+    
+    elif row[2] == "sub":
+        continue
+    
+    elif row[2] == "data":
+        continue
 
+outlist
+games3[:100]
 
 # find way of keeping plays in sequence within an inning
 
@@ -45,7 +71,6 @@ com
 
 sub
 {"game_id": SFN201804100, "entry_type": "sub", player_id: "dysoj001", "name": "Jarrod Dyson", "team": 0, "batting_order": 1, "position" : 7}
-
 
 data
 {"game_id": SFN201804100, "entry_type": "data", "data_type": "er", "player_id": "kersc001", "earned_runs": 1}
