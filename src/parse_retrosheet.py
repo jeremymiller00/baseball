@@ -1,4 +1,6 @@
-'''Read in and parse lines from retrosheet data files; prep them for input into Mongodb
+'''Read in and parse lines from a directory of retrosheet data files; prep them for input into Mongodb.
+
+Requires a directory titled "json_files" in the same parent directory as the diretories which contain the retrosheet event files.
 
 Line formats:
 info
@@ -21,6 +23,14 @@ data
 
 to import into mongo from command line
 mongoimport --jsonArray --db testdb --collection testcoll < test.json
+
+rename all files in dir to prep for mongodb
+ls | xargs -i mv {} c_{}
+
+to import all in a folder, from inside the folder
+ls -1 *.json | sed 's/.json$//' | while read col; do 
+    mongoimport --jsonArray --db retrosheet --collection $col < $col.json; 
+done
 '''
 import numpy as np
 import sys
@@ -28,12 +38,27 @@ import json
 import subprocess
 
 def read_file(path):
-    # read in a file
+    '''
+    Read in a file.
+
+    Parameters:
+    ----------
+    Input: 
+    Output: 
+    '''
     with open(path) as f:
         return f.readlines()
 
 def trim_lines(file):
     # get rid of \n
+    '''
+    Read in a file.
+
+    Parameters:
+    ----------
+    Input: 
+    Output: 
+    '''    
     out = []
     for line in file:
         out.append(line[:-1])
@@ -41,6 +66,14 @@ def trim_lines(file):
 
 def insert_game_number(file):
     # put game number in front of each line
+    '''
+    Read in a file.
+
+    Parameters:
+    ----------
+    Input: 
+    Output: 
+    '''
     out = []
     id_field = ""
     for line in file:
@@ -53,6 +86,14 @@ def insert_game_number(file):
 
 def split_lines(file):
     # split lines
+    '''
+    Read in a file.
+
+    Parameters:
+    ----------
+    Input: 
+    Output: 
+    '''
     out = []
     for line in file:
         out.append(line.split(","))
@@ -60,6 +101,14 @@ def split_lines(file):
 
 def build_dicts(file):
     # build dictionaries
+    '''
+    Read in a file.
+
+    Parameters:
+    ----------
+    Input: 
+    Output: 
+    '''
     out = []
     for row in file:
         if len(row) < 3:
@@ -107,14 +156,15 @@ def main(dir):
                 id_data = insert_game_number(trimmed_data)
                 split_data = split_lines(id_data)
                 dicts = build_dicts(split_data)
-                with open(dir+file[:-3]+"json", 'w') as fout:
+                outpath = "data/retrosheet_data/json_files/"+file[:-3]+"json"
+                with open(outpath, 'w') as fout:
                     json.dump(dicts, fout)
 
 ##################################################################
 if __name__ == "__main__":
 
     '''
-    ipython -i parse_retroshe4.py directory
+    ipython -i parse_retrosheet.py directory
     '''
     main(sys.argv[1])
 
