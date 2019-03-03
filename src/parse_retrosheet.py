@@ -43,21 +43,20 @@ def read_file(path):
 
     Parameters:
     ----------
-    Input: 
-    Output: 
+    Input {str}: path to file
+    Output: {str}: open python string object
     '''
     with open(path) as f:
         return f.readlines()
 
 def trim_lines(file):
-    # get rid of \n
     '''
-    Read in a file.
+    Trim '\n' from the end of each line
 
     Parameters:
     ----------
-    Input: 
-    Output: 
+    Input {str}: open python string object
+    Output {str}: open python string object
     '''    
     out = []
     for line in file:
@@ -65,14 +64,13 @@ def trim_lines(file):
     return out
 
 def insert_game_number(file):
-    # put game number in front of each line
     '''
-    Read in a file.
+    Insert game number in front of each line
 
     Parameters:
     ----------
-    Input: 
-    Output: 
+    Input {str}: open python string object
+    Output {str}: open python string object
     '''
     out = []
     id_field = ""
@@ -85,14 +83,13 @@ def insert_game_number(file):
     return out
 
 def split_lines(file):
-    # split lines
     '''
-    Read in a file.
+    Split string into list of strings
 
     Parameters:
     ----------
-    Input: 
-    Output: 
+    Input {str}: open python string object
+    Output {list: str}: list of event strings
     '''
     out = []
     for line in file:
@@ -100,14 +97,13 @@ def split_lines(file):
     return out
 
 def build_dicts(file):
-    # build dictionaries
     '''
-    Read in a file.
+    Convert event string to dictionary with appropriate labels
 
     Parameters:
     ----------
-    Input: 
-    Output: 
+    Input {list: str}: list of event strings
+    Output {list: dict}: list of event dictionaries
     '''
     out = []
     for row in file:
