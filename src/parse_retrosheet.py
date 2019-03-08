@@ -160,7 +160,7 @@ def main(dir):
 if __name__ == "__main__":
 
     '''
-    ipython -i parse_retrosheet.py directory
+    ipython -i src/parse_retrosheet.py directory
     '''
     main(sys.argv[1])
 
