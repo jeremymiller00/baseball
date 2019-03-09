@@ -25,7 +25,7 @@ to import into mongo from command line
 mongoimport --jsonArray --db testdb --collection testcoll < test.json
 
 rename all files in dir to prep for mongodb
-ls | xargs -i mv {} c_{}
+ls | xargs -I {} mv {} c_{}
 
 to import all in a folder, from inside the folder
 ls -1 *.json | sed 's/.json$//' | while read col; do 
