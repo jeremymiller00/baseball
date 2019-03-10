@@ -131,9 +131,7 @@ def silhouette_analysis(X, range_n_clusters = [2, 3, 4, 5, 6]):
         ax2.set_xlabel("Feature space for the 1st feature")
         ax2.set_ylabel("Feature space for the 2nd feature")
 
-        plt.suptitle(("Silhouette analysis for KMeans clustering on     baseball seasonal totals "
-                      "with n_clusters = %d" % n_clusters),
-                     fontsize=14, fontweight='bold')
+        plt.suptitle(("Silhouette analysis for KMeans clustering on baseball seasonal totals with n_clusters = %d" % n_clusters),fontsize=14, fontweight='bold')
 
     plt.show()
 
@@ -166,8 +164,15 @@ if __name__ == "__main__":
     X = df_per_game.values
 
     # determine init with lowest inertia
-    # evaluate_init()
+    evaluate_init()
     # kmeans ++ init has lowest inertia
 
     # determnine optimum K with silhouette analysis
-    silhouette_analysis(X, range_n_clusters = [2, 3, 4, 5, 6, 7, 8, 9, 10])
+    silhouette_analysis(X, range_n_clusters = [2, 3, 4, 5])
+    # optimum k value is 2
+
+    model = KMeans(n_clusters=2)
+    model.fit(X)
+    years = np.array(df_per_game.index)
+    group0 = years[~model.labels_.astype(bool)]
+    group1 = years[model.labels_.astype(bool)]
