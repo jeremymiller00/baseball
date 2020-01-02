@@ -7,7 +7,6 @@ data/retrosheet_data/json_files
 
 This directory is a holding zone for the json files before loading into mongodb.
 
-```
 Use the python command to parse the files into json:
 ```python
 ipython -i src/parse_retrosheet.py directory_with_event_files/
