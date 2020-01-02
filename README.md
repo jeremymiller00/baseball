@@ -22,6 +22,13 @@ Baseball statistics are typically analyzed and presented as **summaries**, eithe
 
 * Explore 19th century baseball. This project is motivated purely by my own curiosity. It can follow from the first project idea: once eras are empirically defined, what are the characteristics of each era? I find it fun to imagine going to a baseball game in those early days.
 
+## Done
+Got event files loaded into database through 2019 and recorded process.
 
-
+## To Do
+* Create process for loading other retrosheet files
+ * roster files
+ * ?
+* Start EDA
+ * Create questions
 
