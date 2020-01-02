@@ -144,9 +144,12 @@ def main(dir):
     '''
     files = subprocess.check_output(["ls", dir], universal_newlines=True)
     split_files = files.split("\n")
+    counter = 0
     for file in split_files:
         if len(file) != 0:
             if file[-3] == "E":
+                counter += 1
+                print("Processing file {} / {}".format(counter, len(split_files)))
                 data = read_file(dir+file)
                 trimmed_data = trim_lines(data)
                 id_data = insert_game_number(trimmed_data)
