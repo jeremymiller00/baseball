@@ -1,4 +1,5 @@
 # How to Add New Records to the Retrosheet Database
+## These are instructions for adding event files to the database.
 
 Make sure there is a directory on local in the format:
 ```
