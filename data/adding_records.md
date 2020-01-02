@@ -3,6 +3,7 @@
 Make sure there is a directory on local in the format:
 ```
 data/retrosheet_data/json_files
+```
 
 This directory is a holding zone for the json files before loading into mongodb.
 
