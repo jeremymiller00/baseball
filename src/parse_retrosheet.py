@@ -21,9 +21,10 @@ sub
 data
 {"game_id": SFN201804100, "entry_type": "data", "data_type": "er", "player_id": "kersc001", "earned_runs": 1}
 
-to import into mongo from command line
+in general, to import into mongo from command line
 mongoimport --jsonArray --db testdb --collection testcoll < test.json
 
+But here is what you should do:
 rename all files in dir to prep for mongodb
 ls | xargs -I {} mv {} c_{}
 
@@ -31,6 +32,7 @@ to import all in a folder, from inside the folder
 ls -1 *.json | sed 's/.json$//' | while read col; do 
     mongoimport --jsonArray --db retrosheet --collection $col < $col.json; 
 done
+
 '''
 import numpy as np
 import sys
@@ -144,9 +146,12 @@ def main(dir):
     '''
     files = subprocess.check_output(["ls", dir], universal_newlines=True)
     split_files = files.split("\n")
+    counter = 0
     for file in split_files:
         if len(file) != 0:
             if file[-3] == "E":
+                counter += 1
+                print("Processing file {} / {}".format(counter, len(split_files)))
                 data = read_file(dir+file)
                 trimmed_data = trim_lines(data)
                 id_data = insert_game_number(trimmed_data)
