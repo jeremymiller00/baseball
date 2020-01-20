@@ -24,3 +24,26 @@ docker exec -it mongoserver mongo
 
 From here you can execute queries directy to a collection, but the real power for data analysis is in accessing the data via python.
 
+
+Entry types from event files
+```
+info
+{"game_id": SFN201804100, "entry_type": "info", "visteam":"ARI}
+
+start
+{"game_id": SFN201804100, "entry_type": "start", player_id: "dysoj001", "name": "Jarrod Dyson", "home_team": 0, "batting_order": 1, "position" : 7}
+
+play
+{"game_id": SFN201804100, "entry_type": "play", "inning": 1, "bottom": 0, "player_id": "dysoj001", "count": 21, "pitches", CBBX, "event": "CBF2FBB>X,D7/L.2-H;1-H"
+
+com
+{"game_id": SFN201804100, "entry_type": "com", "comment": "team blah blah" 
+
+sub
+{"game_id": SFN201804100, "entry_type": "sub", player_id: "dysoj001", "name": "Jarrod Dyson", "team": 0, "batting_order": 1, "position" : 7}
+```
+
+Entry type from roster file
+```
+roster
+{"entry_type": "roster", "player_id": "grimb101", "last_name": "Grimes", "first_name":"Burleigh", "bats": "R", "throws": "R", "team":"BRO", position": "P"}```
