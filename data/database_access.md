@@ -47,3 +47,8 @@ Entry type from roster file
 ```
 roster
 {"entry_type": "roster", "player_id": "grimb101", "last_name": "Grimes", "first_name":"Burleigh", "bats": "R", "throws": "R", "team":"BRO", position": "P"}```
+
+Entry type for teams file
+Teams
+```
+{"entry_type": "teams", "abbreviation": "SFN", "league": "N", "city":"San Francisco", "name": "Giants"}```
