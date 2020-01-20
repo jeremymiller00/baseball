@@ -45,8 +45,9 @@ def _connect_mongo(host, port, username, password, db):
     return conn[db]
 
 
-def read_database(db, query={}, host='localhost', port=27017, username=None, password=None, no_id=True):
-    """ Read from Mongo and Store into DataFrame """
+def read_database(db, query={}, host='localhost', port=27018, username=None, password=None, no_id=True): 
+    """ Read from Mongo and Store into DataFrame 
+    Typically port 27017 is used"""
 
     # Connect to MongoDB
     db = _connect_mongo(host=host, port=port, username=username, password=password, db=db)
@@ -66,8 +67,9 @@ def read_database(db, query={}, host='localhost', port=27017, username=None, pas
         
     return pd.concat(dfs)
 
-def read_collection(db, collection, query={}, host='localhost', port=27017, username=None, password=None, no_id=True):
-    """ Read from Mongo and Store into DataFrame """
+def read_collection(db, collection, query={}, host='localhost', port=27018, username=None, password=None, no_id=True):
+    """ Read from Mongo and Store into DataFrame 
+    Typically port 27017 is used"""
 
     # Connect to MongoDB
     db = _connect_mongo(host=host, port=port, username=username, password=password, db=db)
