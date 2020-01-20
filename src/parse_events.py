@@ -1,4 +1,4 @@
-'''Read in and parse lines from a directory of retrosheet data files; prep them for input into Mongodb.
+'''Read in and parse lines from a directory of retrosheet EVENT data files; prep them for input into Mongodb.
 
 Requires a directory titled "json_files" in the same parent directory as the diretories which contain the retrosheet event files.
 
