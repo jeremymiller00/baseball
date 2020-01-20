@@ -22,17 +22,17 @@ docker exec -it mongoserver bash
 cd /home/data/GoogleDrive/Data_Science/Projects/Baseball/data/retrosheet_data/json_files
 ```
 
+To load all into single collection (named 'd'):
+```
+ls -1 *.json | sed 's/.json$//' | while read col; do 
+    mongoimport --jsonArray --db retrosheet --collection d < $col.json;
+done
+```
+
 Load the renamed json files into mongodb each with it's own colllection with:
 ```
 ls -1 *.json | sed 's/.json$//' | while read col; do 
     mongoimport --jsonArray --db retrosheet --collection $col < $col.json;
-done
-```
-
-To load all into single collection:
-```
-ls -1 *.json | sed 's/.json$//' | while read col; do 
-    mongoimport --jsonArray --db retrosheet --collection events < $col.json;
 done
 ```
 
