@@ -16,16 +16,16 @@ Then rename all of the files in prep for mongodb by adding *_c* to the start of 
 ```
 ls | xargs -I {} mv {} c_{}
 ```
-In the docker mongoserver container, the directory */home/data* is linked to *~* on local. From within the container, we need to navigate to the directory with the new json files.
+In the docker mongoserver container, the directory */home/* is linked to */Users/Jeremy/GoogleDrive/Data_Science/Projects/Baseball* on local. From within the container, we need to navigate to the directory with the new json files.
 ```
 docker exec -it mongoserver bash
-cd /home/data/GoogleDrive/Data_Science/Projects/Baseball/data/retrosheet_data/json_files
+cd /home/data/retrosheet_data/json_files
 ```
 
-To load all into single collection (named 'd'):
+To load all into single collection (named 'logs'):
 ```
 ls -1 *.json | sed 's/.json$//' | while read col; do 
-    mongoimport --jsonArray --db retrosheet --collection d < $col.json;
+    mongoimport --jsonArray --db retrosheet --collection events < $col.json;
 done
 ```
 
