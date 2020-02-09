@@ -119,7 +119,7 @@ def build_dicts(file):
                 out.append(d)
 
         elif row[2] == "start":
-            d = {"game_id": row[1], "entry_type": row[2], "player_id":  row[3], "name": row[4], "home_team": row[5],     "batting_order": row[6], "position": row[7]}
+            d = {"game_id": row[1], "entry_type": row[2], "player_id":  row[3], "name": row[4][1:-1], "home_team": row[5],     "batting_order": row[6], "position": row[7]}
             out.append(d)
 
         elif row[2] == "play":
@@ -131,7 +131,7 @@ def build_dicts(file):
             out.append(d)
 
         elif row[2] == "sub":
-            d = {"game_id": row[1], "entry_type": row[2], "player_id": row[3], "name": row[4], "home_team": row[5], "batting_order": row[6], "position": row[7]}
+            d = {"game_id": row[1], "entry_type": row[2], "player_id": row[3], "name": row[4][1:-1], "home_team": row[5], "batting_order": row[6], "position": row[7]}
             out.append(d)
 
         elif row[2] == "data":
@@ -151,7 +151,7 @@ def main(dir):
         if len(file) != 0:
             if file[-3] == "E":
                 counter += 1
-                print("Processing file {} / {}".format(counter, len(split_files)))
+                print("Processing file {}".format(counter))
                 data = read_file(dir+file)
                 trimmed_data = trim_lines(data)
                 id_data = insert_game_number(trimmed_data)
