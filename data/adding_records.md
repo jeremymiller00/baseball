@@ -12,10 +12,7 @@ Use the python command to parse the event files into json:
 ```python
 ipython -i src/parse_events.py directory_with_event_files/
 ```
-Then rename all of the files in prep for mongodb by adding *_c* to the start of each filename:
-```
-ls | xargs -I {} mv {} c_{}
-```
+
 In the docker mongoserver container, the directory */home/* is linked to */Users/Jeremy/GoogleDrive/Data_Science/Projects/Baseball* on local. From within the container, we need to navigate to the directory with the new json files.
 ```
 docker exec -it mongoserver bash
@@ -42,3 +39,10 @@ rm -rf data/retrosheet_data/json_files/
 ```
 
 ### And there you have it!
+
+
+Old steps:
+Then rename all of the files in prep for mongodb by adding *_c* to the start of each filename:
+```
+ls | xargs -I {} mv {} c_{}
+```

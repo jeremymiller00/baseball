@@ -14,7 +14,7 @@ docker start mongoserver
 
 To access the container:
 ```
-docker exec -it mongoserver sh
+docker exec -it mongoserver bash
 ```
 This takes you to a shell environment.
 To access the container with a command (go straight to the mongo shell):
