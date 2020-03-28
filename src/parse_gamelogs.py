@@ -22,6 +22,8 @@ import numpy as np
 import sys
 import json
 import subprocess
+import os
+import shutil
 
 def read_file(path):
     '''
@@ -105,6 +107,14 @@ def main(dir):
     Input: directory with retrosheet files
     Output: folder with json files
     '''
+    temp_path = "data/retrosheet_data/json_files"
+
+    if not os.path.exists(temp_path):
+        os.mkdir(temp_path)
+        print("Directory " , temp_path ,  " Created ")
+    else:    
+        print("Directory " , temp_path ,  " already exists")
+
     files = subprocess.check_output(["ls", dir], universal_newlines=True)
     split_files = files.split("\n")
     counter = 0
@@ -120,6 +130,10 @@ def main(dir):
                 outpath = "data/retrosheet_data/json_files/"+file[:-3]+"json"
                 with open(outpath, 'w') as fout:
                     json.dump(dicts, fout)
+    # try:
+    #     shutil.rmtree(temp_path)
+    # except OSError as e:
+    #     print ("Error: {} - {}}.".format(e.filename, e.strerror))
 
 ##################################################################
 if __name__ == "__main__":
