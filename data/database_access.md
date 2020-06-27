@@ -52,3 +52,6 @@ Entry type for teams file
 Teams
 ```
 {"entry_type": "teams", "abbreviation": "SFN", "league": "N", "city":"San Francisco", "name": "Giants"}```
+
+## Mongo Python Notes Here: 
+/Users/Jeremy/GoogleDrive/Data_Science/Galvanize/dsi-welcome-19-01-DS-SF-g88/notes
