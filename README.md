@@ -25,9 +25,3 @@ Baseball statistics are typically analyzed and presented as **summaries**, eithe
 ## Done
 * Wrote code to load event, game log, roster, and team files into Mongodb database housed in a Docker container.
 * Wrote and testing querying db from Jupyter environment.
-
-## To Do
-* EDA
- * Define questions
- * Lots of plots!
-* Develop definitions of *context* discussed above
